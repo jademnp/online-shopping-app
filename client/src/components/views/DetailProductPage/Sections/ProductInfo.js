@@ -2,6 +2,9 @@ import React from "react";
 import { Descriptions, Button } from "antd";
 
 const ProductInfo = (props) => {
+	const addToCartHandler = () => {
+		props.addToCart(props.detail._id);
+	};
 	return (
 		<div>
 			<Descriptions title="Product Info">
@@ -18,7 +21,12 @@ const ProductInfo = (props) => {
 			<br />
 			<br />
 			<div style={{ display: "flex", justifyContent: "center" }}>
-				<Button size="large" shape="round" type="danger" onClick>
+				<Button
+					size="large"
+					shape="round"
+					type="danger"
+					onClick={addToCartHandler}
+				>
 					Add to Cart
 				</Button>
 			</div>

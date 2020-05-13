@@ -100,11 +100,13 @@ router.get("/product_by_id", (req, res) => {
 	let type = req.query.type;
 	let productId = req.query.id;
 	if (type === "array") {
+		let ids = req.query.id.split(",");
+		productId = [];
+		productId = ids.map((item) => item);
 	}
 	Product.find({ _id: { $in: productId } })
 		.populate("writter")
 		.exec((err, products) => {
-			console.log("products", products);
 			if (err) return res.status(400).json({ success: false, err });
 			return res.status(200).json({ success: true, products });
 		});
